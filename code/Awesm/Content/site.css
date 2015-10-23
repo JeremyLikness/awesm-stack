@@ -1,0 +1,59 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+div.row.bordered {
+    border-top: solid 1px gray;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.spacer {
+    height: 4px;
+}
+
+textarea.textarea-wide {
+    max-width: 100%;
+}
+
+.modal-backdrop
+{
+    opacity:0.5 !important;
+}
+
+.cursor-hand {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.body-container {
+    width: 100%;
+    max-height: 450px;
+    margin: 0;
+    overflow-y: auto;
+}
+
+.table-scrollable {
+    margin: 0;
+    padding: 0;
+}
+
+.fixed-height {
+    height: 400px;
+}
+
+div.box {
+    border: solid 1px gray;
+}

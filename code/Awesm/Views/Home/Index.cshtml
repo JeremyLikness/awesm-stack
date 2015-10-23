@@ -1,0 +1,50 @@
+﻿@{
+    var baseUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority,
+                    Url.Content("~/"));
+}
+<h1>The AWESM App</h1>
+<div class="modal modal-backdrop" ng-class="{ show: isBusy }">
+    <div class="modal-body">
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row center-block text-center h1">
+            <span class="glyphicon glyphicon-time"></span>
+            Loading...
+        </div>
+    </div>
+</div>
+<div ng-controller="alertCtrl as alertCtrl">
+    <div ng-repeat="alert in alertCtrl.alerts" class="alert alert-dismissable leave"
+         ng-class="{'alert-danger':alert.level==='danger', 'alert-warning':alert.level==='warning', 'alert-info':alert.level==='info', 'alert-success':alert.level==='success'}">
+        {{alert.message}}
+        <a class="pull-right cursor-hand" ng-click="alertCtrl.dismiss(alert.id)">&times;</a>
+    </div>
+</div>
+<div class="row">&nbsp;</div>
+<div class="row" ng-view></div>
+@section scripts {
+<script>
+        var awesm;
+        (function (awesm) {
+            "use strict";
+
+            awesm.baseUrl = "@baseUrl";
+
+        })(awesm || (awesm = {}));
+</script>
+
+    <script src="~/Scripts/app/main.js"></script>
+
+    <script src="~/Scripts/app/services/titleService.js"></script>
+    <script src="~/Scripts/app/services/busyService.js"></script>
+    <script src="~/Scripts/app/services/alertService.js"></script>
+    <script src="~/Scripts/app/services/foodDescriptionService.js"></script>
+    
+    <script src="~/Scripts/app/controllers/alertController.js"></script>
+    <script src="~/Scripts/app/controllers/foodListController.js"></script>
+
+}
+

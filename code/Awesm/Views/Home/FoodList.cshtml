@@ -1,0 +1,80 @@
+﻿<div class="row">
+    <strong>Food Descriptions</strong><hr class="divider" />
+</div>
+<div class="panel">
+    <div class="panel-heading bg-info">
+        Filter
+    </div>
+    <div class="panel-body">
+        <form name="st.searchForm" class="form-horizontal" role="form" novalidate="">
+            <div class="form-group col-sm-12 col-md-4 col-lg-3">
+                <label for="searchText" class="control-label">Filter:</label>
+                <input name="searchText" class="form-control input-sm" ng-model="foodListCtrl.searchText" placeholder="Enter text to filter food name or description" />
+            </div>
+            
+            <div class="form-group col-sm-12 col-md-4 col-lg-3">
+                <div class="form-control-static">
+                    &nbsp;
+                    <button class="btn btn-success"
+                            ng-disabled="foodListCtrl.searchForm.$invalid || foodListCtrl.oading"
+                            ng-click="foodListCtrl.refresh()">
+                        <span class="glyphicon glyphicon-filter"></span>&nbsp;
+                        Filter
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-danger"
+                            ng-click="foodListCtrl.reset()">
+                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;
+                        Clear Filter
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-heading bg-info">
+        <strong>Results&nbsp;</strong>        
+    </div>
+    <div class="panel-">
+        <div ng-if="foodListCtrl.loading" class="alert alert-info">
+            <span class="glyphicon glyphicon-time"></span>&nbsp;Loading...
+        </div>
+        <div ng-if="!foodListCtrl.loading && foodListCtrl.foodList.length">
+            <table class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>
+                            <span class="pull-right">
+                                Number                                
+                            </span>
+                        </th>                        
+                        <th class="cursor-hand">
+                            Name                           
+                        </th>
+                        <th class="cursor-hand">
+                            Description
+                        </th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="foodItem in foodListCtrl.foodList">
+                        <td>
+                            <span title="Edit Item" class="glyphicon glyphicon-edit cursor-hand" ng-click="foodListCtrl.edit(foodItem.Number)"></span>
+                            &nbsp;
+                            <span title="Delete Item" class="glyphicon glyphicon-remove cursor-hand" ng-click="foodListCtrl.deleteFood(foodItem)"></span>
+
+                        </td>
+                        <td><span class="pull-right">{{::foodItem.Number}}</span></td>
+                        <td>{{::foodItem.Name}}</td>
+                        <td>{{::foodItem.Description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="!foodListCtrl.loading && foodListCtrl.foodList.length === 0" class="alert alert-warning">There are no records to display for the provided search criteria.</div>
+    </div>
+</div>
